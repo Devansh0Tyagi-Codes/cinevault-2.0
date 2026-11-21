@@ -4,69 +4,67 @@
 
 @layer base {
   :root {
-    --background: 220 35% 5%;
-    --foreground: 210 40% 98%;
+    --canvas: #F9F8F6;
+    --ink: #121316;
   }
 
   * {
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: #E2DDD5;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #F9F8F6;
   }
 
   body {
-    background-color: #080B11;
-    color: #F8FAFC;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    background-color: #F9F8F6;
+    color: #121316;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+  }
+
+  /* Accessible focus styling */
+  :focus-visible {
+    outline: 2px solid #C2410C;
+    outline-offset: 2px;
   }
 }
 
 @layer utilities {
-  .glass-panel {
-    background: rgba(15, 20, 28, 0.75);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+  .editorial-rule {
+    border-color: #E2DDD5;
   }
 
-  .glass-card {
-    background: linear-gradient(135deg, rgba(22, 29, 39, 0.8) 0%, rgba(15, 20, 28, 0.6) 100%);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  .glow-crimson {
-    box-shadow: 0 0 25px -5px rgba(229, 9, 20, 0.35);
-  }
-
-  .glow-gold {
-    box-shadow: 0 0 20px -5px rgba(245, 197, 24, 0.35);
-  }
-
-  .text-gradient-crimson {
-    background: linear-gradient(135deg, #FFFFFF 30%, #E50914 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .text-gradient-silver {
-    background: linear-gradient(135deg, #FFFFFF 50%, #94A3B8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  .text-balance {
+    text-wrap: balance;
   }
 }
 
-/* Custom Cinema Scrollbar */
+/* Custom Archival Paper Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #080B11;
+  background: #F2EFE9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1E2633;
-  border-radius: 4px;
+  background: #D5D0C6;
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #E50914;
+  background: #9A958C;
+}
+
+/* Reduced Motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
