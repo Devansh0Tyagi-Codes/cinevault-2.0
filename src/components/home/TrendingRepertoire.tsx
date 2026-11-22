@@ -1,8 +1,54 @@
 import { Star } from 'lucide-react';
-import { TRENDING_REPERTOIRE } from '@/data/mock-media';
+import { useTrendingMovies } from '@/hooks/useTMDB';
+import MediaSkeleton from '@/components/common/MediaSkeleton';
+import ErrorCard from '@/components/common/ErrorCard';
 
 export default function TrendingRepertoire() {
-  const { lead, dualFrames, digest } = TRENDING_REPERTOIRE;
+  const { data, isLoading, isError, error, refetch } = useTrendingMovies('week');
+
+  if (isLoading) {
+    return (
+      <section className="py-14 border-b border-paper-rule" aria-label="Loading cultural repertoire">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div className="lg:col-span-5"><MediaSkeleton aspectRatio="3/4" /></div>
+            <div className="lg:col-span-4 space-y-6">
+              <MediaSkeleton aspectRatio="16/10" />
+              <MediaSkeleton aspectRatio="16/10" />
+            </div>
+            <div className="lg:col-span-3 space-y-4">
+              <MediaSkeleton aspectRatio="16/10" />
+              <MediaSkeleton aspectRatio="16/10" />
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (isError) {
+    return (
+      <section className="py-14 border-b border-paper-rule">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ErrorCard
+            title="Cultural Repertoire Feed Unavailable"
+            message={error instanceof Error ? error.message : 'Failed to retrieve repertoire.'}
+            onRetry={() => refetch()}
+          />
+        </div>
+      </section>
+    );
+  }
+
+  const items = data?.items || [];
+  // Lead is item #1 (index 1), dual frames are items #2 and #3, digest is items #4-#6
+  const lead = items[1] || items[0];
+  const dualFrames = items.slice(2, 4);
+  const digest = items.slice(4, 7);
+
+  if (!lead) {
+    return null;
+  }
 
   return (
     <section className="py-14 border-b border-paper-rule" aria-labelledby="trending-repertoire-title" id="trending">
@@ -18,7 +64,7 @@ export default function TrendingRepertoire() {
             </h2>
           </div>
           <div className="text-xs font-mono text-ink-caption">
-            RANKED BY VERIFIED CRITICAL RECEPTION
+            {data?.isMockMode ? 'CURATED DEMONSTRATION' : 'LIVE TMDB WEEKLY REPERTOIRE'}
           </div>
         </div>
 
@@ -28,7 +74,7 @@ export default function TrendingRepertoire() {
           <article className="lg:col-span-5 space-y-4 group">
             <div className="relative aspect-[3/4] overflow-hidden rounded-sm border border-paper-rule bg-paper-surface">
               <img
-                src={lead.imageUrl}
+                src={lead.posterUrl}
                 alt={lead.title}
                 className="w-full h-full object-cover grayscale-[10%] group-hover:scale-[1.015] transition-transform duration-500 ease-out"
                 loading="lazy"
@@ -42,7 +88,7 @@ export default function TrendingRepertoire() {
               <div className="flex items-center space-x-2 text-xs font-mono text-ink-caption">
                 <span>{lead.year}</span>
                 <span>&bull;</span>
-                <span>{lead.runtime}</span>
+                <span className="uppercase">{lead.mediaType}</span>
                 <span>&bull;</span>
                 <span className="text-rating-gold font-bold flex items-center space-x-1">
                   <Star className="h-3 w-3 fill-rating-gold" />
@@ -53,10 +99,6 @@ export default function TrendingRepertoire() {
               <h3 className="font-serif text-2xl font-semibold text-ink-primary group-hover:text-accent-warm transition-colors leading-tight">
                 {lead.title}
               </h3>
-
-              <p className="font-serif italic text-xs text-ink-muted">
-                Directed by <span className="text-ink-primary not-italic font-medium">{lead.director}</span>
-              </p>
 
               <p className="font-sans text-xs text-ink-muted leading-relaxed line-clamp-3">
                 {lead.synopsis}
@@ -70,7 +112,7 @@ export default function TrendingRepertoire() {
               <article key={movie.id} className="space-y-3 group pb-6 border-b border-paper-rule last:border-b-0 last:pb-0">
                 <div className="relative aspect-[16/10] overflow-hidden rounded-sm border border-paper-rule bg-paper-surface">
                   <img
-                    src={movie.imageUrl}
+                    src={movie.backdropUrl || movie.posterUrl}
                     alt={movie.title}
                     className="w-full h-full object-cover grayscale-[10%] group-hover:scale-[1.015] transition-transform duration-500 ease-out"
                     loading="lazy"
@@ -84,7 +126,7 @@ export default function TrendingRepertoire() {
                   <div className="flex items-center space-x-2 text-[11px] font-mono text-ink-caption">
                     <span>{movie.year}</span>
                     <span>&bull;</span>
-                    <span>{movie.runtime}</span>
+                    <span className="uppercase">{movie.mediaType}</span>
                     <span>&bull;</span>
                     <span className="text-rating-gold font-bold">★ {movie.tmdbRating}</span>
                   </div>
@@ -92,10 +134,6 @@ export default function TrendingRepertoire() {
                   <h3 className="font-serif text-lg font-semibold text-ink-primary group-hover:text-accent-warm transition-colors leading-snug">
                     {movie.title}
                   </h3>
-
-                  <p className="font-serif italic text-xs text-ink-muted">
-                    Directed by <span className="text-ink-primary not-italic font-medium">{movie.director}</span>
-                  </p>
                 </div>
               </article>
             ))}
@@ -104,7 +142,7 @@ export default function TrendingRepertoire() {
           {/* Column 3: Compact Ranked Digest (3 cols on Desktop) */}
           <aside className="lg:col-span-3 space-y-6 pt-2 lg:pt-0">
             <div className="pb-2 border-b border-paper-rule text-[11px] font-mono tracking-wider text-ink-caption uppercase">
-              NOTABLE MENTIONS // #04 — #06
+              NOTABLE MENTIONS // #{String(dualFrames.length + 2).padStart(2, '0')} — #06
             </div>
 
             <div className="space-y-6">
@@ -120,8 +158,6 @@ export default function TrendingRepertoire() {
                       </h4>
                       <div className="flex items-center space-x-2 text-[10px] font-mono text-ink-caption">
                         <span>{item.year}</span>
-                        <span>&bull;</span>
-                        <span>Dir. {item.director}</span>
                         <span>&bull;</span>
                         <span className="text-rating-gold font-bold">★ {item.tmdbRating}</span>
                       </div>
