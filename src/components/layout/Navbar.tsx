@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Search, Globe2, Menu, X, Bookmark, Film } from 'lucide-react';
+import { Search, Globe2, Menu, X, Bookmark, Clapperboard, Calendar, Sparkles } from 'lucide-react';
 import { useUIStore } from '@/stores/ui-store';
 import { getPlatformShortcut } from '@/lib/platform';
 
@@ -8,126 +8,128 @@ export default function Navbar() {
   const { preferredRegion, setPreferredRegion, toggleCommandPalette } = useUIStore();
   const shortcut = getPlatformShortcut();
 
-  const todayFormatted = new Intl.DateTimeFormat('en-US', {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  }).format(new Date());
-
   return (
-    <header className="sticky top-0 z-40 bg-paper-canvas/95 backdrop-blur-md border-b border-paper-rule transition-colors">
-      {/* Top Colophon Line (Editorial Print Header) */}
-      <div className="border-b border-paper-rule text-[11px] font-mono tracking-wider text-ink-caption uppercase px-4 sm:px-6 lg:px-8 py-1.5">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <span className="hidden sm:inline">CINEVAULT JOURNAL</span>
-            <span className="hidden sm:inline text-paper-rule">•</span>
-            <span>FILM &amp; TELEVISION ARCHIVE</span>
-          </div>
-
-          <div className="hidden md:block text-center text-ink-caption">
-            {todayFormatted}
-          </div>
-
-          <div className="flex items-center space-x-3">
-            <button
-              onClick={() => setPreferredRegion(preferredRegion === 'IN' ? 'US' : 'IN')}
-              className="flex items-center space-x-1.5 hover:text-ink-primary transition-colors cursor-pointer"
-              title="Click to cycle active release region"
-              aria-label={`Current Region: ${preferredRegion}. Click to switch.`}
-            >
-              <Globe2 className="h-3 w-3 text-accent-warm" />
-              <span>REGION: <strong>{preferredRegion}</strong></span>
-            </button>
-          </div>
-        </div>
-      </div>
-
+    <header className="sticky top-0 z-40 bg-[#446879]/95 backdrop-blur-md border-b border-[#6D8795] transition-colors">
       {/* Primary Navigation Bar */}
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between" aria-label="Main Navigation">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-18 flex items-center justify-between" aria-label="Main Navigation">
         {/* Brand Wordmark */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-6">
           <a
             href="/"
-            className="flex items-center space-x-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-warm rounded"
+            className="flex items-center space-x-2.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded"
           >
-            <span className="font-serif text-2xl sm:text-3xl font-semibold tracking-widest text-ink-primary group-hover:text-accent-warm transition-colors">
-              C I N E V A U L T
-            </span>
-            <span className="text-[10px] font-mono font-bold tracking-wider px-1.5 py-0.5 rounded-sm bg-paper-surface border border-paper-rule text-ink-caption">
-              2.0
-            </span>
+            <div className="h-8 w-8 rounded-lg bg-white flex items-center justify-center text-[#304957] shadow-subtle">
+              <Clapperboard className="h-4 w-4 stroke-[2.5]" />
+            </div>
+            <div className="flex items-baseline space-x-1.5">
+              <span className="font-display text-xl sm:text-2xl font-bold tracking-widest text-white group-hover:text-[#E1E9ED] transition-colors">
+                CINEVAULT
+              </span>
+              <span className="text-[10px] font-mono font-bold tracking-wider px-1.5 py-0.5 rounded bg-[#527789] border border-[#6D8795] text-white">
+                2.0
+              </span>
+            </div>
           </a>
-        </div>
 
-        {/* Desktop Primary Links */}
-        <div className="hidden lg:flex items-center space-x-8 text-[14px] font-medium tracking-wide">
-          <a
-            href="#discover"
-            className="text-ink-primary relative py-1 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-accent-warm"
-          >
-            Discover
-          </a>
-          <a
-            href="#movies"
-            className="text-ink-muted hover:text-ink-primary transition-colors py-1"
-          >
-            Movies
-          </a>
-          <a
-            href="#tv"
-            className="text-ink-muted hover:text-ink-primary transition-colors py-1"
-          >
-            TV Series
-          </a>
-          <a
-            href="#release-radar"
-            className="text-ink-muted hover:text-ink-primary transition-colors flex items-center space-x-1.5 py-1"
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-accent-warm animate-pulse" />
-            <span>Release Radar</span>
-          </a>
+          {/* Desktop Primary Links */}
+          <div className="hidden lg:flex items-center space-x-6 text-[13px] font-medium tracking-wide text-[#E1E9ED]">
+            <a
+              href="#featured"
+              className="hover:text-white transition-colors py-1"
+            >
+              Featured
+            </a>
+            <a
+              href="#latest-releases"
+              className="hover:text-white transition-colors py-1 flex items-center space-x-1"
+            >
+              <span>Latest Releases</span>
+            </a>
+            <a
+              href="#coming-soon"
+              className="hover:text-white transition-colors py-1"
+            >
+              Coming Soon
+            </a>
+            <a
+              href="#trending"
+              className="hover:text-white transition-colors py-1"
+            >
+              Trending
+            </a>
+            <a
+              href="#series"
+              className="hover:text-white transition-colors py-1"
+            >
+              Series
+            </a>
+            <a
+              href="#calendar"
+              className="hover:text-white transition-colors py-1 flex items-center space-x-1"
+            >
+              <Calendar className="h-3 w-3 text-[#C4D2D9]" />
+              <span>Calendar</span>
+            </a>
+            <a
+              href="#verdicts"
+              className="hover:text-white transition-colors py-1 flex items-center space-x-1 text-white font-semibold"
+            >
+              <Sparkles className="h-3 w-3 text-[#C4D2D9]" />
+              <span>Verdicts</span>
+            </a>
+          </div>
         </div>
 
         {/* Desktop Utility Actions */}
-        <div className="hidden md:flex items-center space-x-4">
+        <div className="hidden md:flex items-center space-x-3">
           {/* Omni-Search Platform-Aware Trigger */}
           <button
             onClick={toggleCommandPalette}
-            className="flex items-center space-x-2.5 px-3.5 py-2 rounded-sm bg-paper-surface hover:bg-paper-highlight border border-paper-rule text-ink-muted hover:text-ink-primary text-xs transition-colors cursor-pointer group"
+            className="flex items-center space-x-2.5 px-3 py-1.5 rounded-lg bg-[#527789] hover:bg-[#385665] border border-[#6D8795] text-[#E1E9ED] hover:text-white text-xs transition-colors cursor-pointer group shadow-subtle"
             aria-label="Open Omni-Search Command Palette"
           >
-            <Search className="h-3.5 w-3.5 text-ink-caption group-hover:text-ink-primary transition-colors" />
-            <span className="font-sans">Search catalog...</span>
-            <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-paper-canvas border border-paper-rule rounded-sm text-ink-caption font-semibold">
+            <Search className="h-3.5 w-3.5 text-[#C4D2D9] group-hover:text-white transition-colors" />
+            <span className="font-sans">Search cinema...</span>
+            <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-[#385665] border border-[#6D8795] rounded text-[#C4D2D9] font-semibold">
               {shortcut}
             </kbd>
           </button>
 
-          {/* Vault Saved Link Placeholder */}
-          <a
-            href="#vault"
-            className="p-2 text-ink-muted hover:text-ink-primary rounded-sm hover:bg-paper-surface border border-transparent hover:border-paper-rule transition-colors"
-            title="Saved in Vault"
-            aria-label="View Saved Vault Items"
+          {/* Region Switcher */}
+          <button
+            onClick={() => setPreferredRegion(preferredRegion === 'IN' ? 'US' : 'IN')}
+            className="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-[#527789] hover:bg-[#385665] border border-[#6D8795] text-xs font-mono text-[#E1E9ED] hover:text-white transition-colors cursor-pointer"
+            title="Click to cycle active release region"
+            aria-label={`Current Region: ${preferredRegion}. Click to switch.`}
           >
-            <Bookmark className="h-4 w-4" />
+            <Globe2 className="h-3.5 w-3.5 text-[#C4D2D9]" />
+            <span>{preferredRegion}</span>
+          </button>
+
+          {/* Vault Saved Trigger */}
+          <a
+            href="#watchlist-teaser"
+            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-[#527789] hover:bg-[#385665] border border-[#6D8795] text-white text-xs font-medium transition-colors shadow-subtle"
+            title="Open Watchlist"
+            aria-label="Open Watchlist"
+          >
+            <Bookmark className="h-3.5 w-3.5 text-[#C4D2D9]" />
+            <span className="hidden xl:inline">My Vault</span>
           </a>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu & Search Button */}
         <div className="flex items-center space-x-2 lg:hidden">
           <button
             onClick={toggleCommandPalette}
-            className="p-2 text-ink-muted hover:text-ink-primary border border-paper-rule rounded-sm bg-paper-surface"
+            className="p-2 text-[#E1E9ED] hover:text-white border border-[#6D8795] rounded-lg bg-[#527789]"
             aria-label="Open Search"
           >
             <Search className="h-4 w-4" />
           </button>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 text-ink-primary border border-paper-rule rounded-sm bg-paper-surface hover:bg-paper-highlight"
+            className="p-2 text-white border border-[#6D8795] rounded-lg bg-[#527789] hover:bg-[#385665]"
             aria-label="Toggle Navigation Menu"
             aria-expanded={isMobileMenuOpen}
           >
@@ -138,54 +140,76 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden border-b border-paper-rule bg-paper-surface px-6 py-6 animate-in fade-in slide-in-from-top-2 duration-200">
-          <div className="flex flex-col space-y-4 font-serif text-lg text-ink-primary">
+        <div className="lg:hidden border-b border-[#6D8795] bg-[#446879] px-6 py-6 animate-in fade-in slide-in-from-top-2 duration-200 shadow-card">
+          <div className="flex flex-col space-y-4 font-display text-base text-white">
             <a
-              href="#discover"
+              href="#featured"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="py-1 text-accent-warm font-semibold"
+              className="py-1 hover:text-[#E1E9ED] transition-colors"
             >
-              Discover
+              Featured Spotlight
             </a>
             <a
-              href="#movies"
+              href="#latest-releases"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="py-1 hover:text-accent-warm transition-colors"
+              className="py-1 hover:text-[#E1E9ED] transition-colors"
             >
-              Movies
+              Latest Movie Releases
             </a>
             <a
-              href="#tv"
+              href="#coming-soon"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="py-1 hover:text-accent-warm transition-colors"
+              className="py-1 hover:text-[#E1E9ED] transition-colors"
             >
-              TV Series
+              Coming Soon
             </a>
             <a
-              href="#release-radar"
+              href="#trending"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="py-1 hover:text-accent-warm transition-colors flex items-center space-x-2"
+              className="py-1 hover:text-[#E1E9ED] transition-colors"
             >
-              <span className="h-2 w-2 rounded-full bg-accent-warm" />
-              <span>Release Radar</span>
+              Trending Movies
             </a>
             <a
-              href="#vault"
+              href="#series"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="py-1 hover:text-accent-warm transition-colors flex items-center space-x-2"
+              className="py-1 hover:text-[#E1E9ED] transition-colors"
             >
-              <Film className="h-4 w-4 text-ink-caption" />
-              <span>The Vault Archive</span>
+              Popular TV Shows
+            </a>
+            <a
+              href="#calendar"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="py-1 flex items-center space-x-2 text-[#E1E9ED] hover:text-white"
+            >
+              <Calendar className="h-4 w-4" />
+              <span>Release Calendar</span>
+            </a>
+            <a
+              href="#verdicts"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="py-1 flex items-center space-x-2 font-medium text-white"
+            >
+              <Sparkles className="h-4 w-4 text-[#C4D2D9]" />
+              <span>Community Verdicts</span>
+            </a>
+            <a
+              href="#watchlist-teaser"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="py-1 text-[#E1E9ED] hover:text-white flex items-center space-x-2"
+            >
+              <Bookmark className="h-4 w-4 text-[#C4D2D9]" />
+              <span>Personal Watchlist</span>
             </a>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-paper-rule flex items-center justify-between text-xs font-mono text-ink-caption">
-            <span>REGION: {preferredRegion}</span>
+          <div className="mt-6 pt-4 border-t border-[#6D8795] flex items-center justify-between text-xs font-mono text-[#C4D2D9]">
+            <span>ACTIVE REGION: {preferredRegion}</span>
             <button
               onClick={() => setPreferredRegion(preferredRegion === 'IN' ? 'US' : 'IN')}
-              className="underline text-accent-warm"
+              className="underline text-white font-medium"
             >
-              Switch Region
+              Switch to {preferredRegion === 'IN' ? 'US' : 'IN'}
             </button>
           </div>
         </div>

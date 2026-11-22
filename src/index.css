@@ -4,59 +4,76 @@
 
 @layer base {
   :root {
-    --canvas: #F9F8F6;
-    --ink: #121316;
+    --canvas: #446879;
+    --canvas-alt: #385665;
+    --surface-lighter: #527789;
+    --surface-darker: #385665;
+    --surface: #FFFFFF;
+    --rule: #6D8795;
+    --ink: #FFFFFF;
+    --accent: #FFFFFF;
+    --accent-text: #304957;
   }
 
   * {
-    border-color: #E2DDD5;
+    border-color: #6D8795;
   }
 
   html {
     scroll-behavior: smooth;
-    background-color: #F9F8F6;
+    background-color: #446879;
+    color: #FFFFFF;
   }
 
   body {
-    background-color: #F9F8F6;
-    color: #121316;
+    background-color: #446879;
+    color: #FFFFFF;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
 
-  /* Accessible focus styling */
+  /* Accessible focus styling with white accent on blue-grey */
   :focus-visible {
-    outline: 2px solid #C2410C;
+    outline: 2px solid #FFFFFF;
     outline-offset: 2px;
   }
 }
 
 @layer utilities {
   .editorial-rule {
-    border-color: #E2DDD5;
+    border-color: #6D8795;
   }
 
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Clean horizontal scroll helper */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
-/* Custom Archival Paper Scrollbar */
+/* Custom Premium Blue-Grey Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #F2EFE9;
+  background: #385665;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D5D0C6;
-  border-radius: 2px;
+  background: #6D8795;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #9A958C;
+  background: #8CA4B1;
 }
 
 /* Reduced Motion Compliance */
