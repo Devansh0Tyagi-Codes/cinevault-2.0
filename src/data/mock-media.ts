@@ -10,6 +10,8 @@ export interface MovieItem {
   tmdbVotes: string;
   synopsis: string;
   imageUrl: string;
+  posterUrl?: string;
+  backdropUrl?: string;
   aspectRatio?: string;
   genres: string[];
   photoCredit?: string;
@@ -25,6 +27,7 @@ export interface ReleaseRadarItem {
   certification?: string;
   daysRemaining?: number;
   imageUrl: string;
+  posterUrl?: string;
 }
 
 export const HERO_DISPATCH: MovieItem = {
@@ -40,8 +43,9 @@ export const HERO_DISPATCH: MovieItem = {
   genres: ['Science Fiction', 'Adventure', 'Drama'],
   synopsis:
     'Paul Atreides unites with Chani and the Fremen while seeking revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the known universe, he endeavors to prevent a terrible future only he can foresee.',
-  imageUrl:
-    'https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=2094&auto=format&fit=crop',
+  imageUrl: 'https://image.tmdb.org/t/p/w1280/uhUO7vQQKvCTfQWubOt5MAKokbL.jpg',
+  posterUrl: 'https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg',
+  backdropUrl: 'https://image.tmdb.org/t/p/w1280/uhUO7vQQKvCTfQWubOt5MAKokbL.jpg',
   photoCredit: 'Warner Bros. Pictures / Legendary Entertainment',
 };
 
@@ -63,8 +67,9 @@ export const TRENDING_REPERTOIRE: {
     genres: ['Biography', 'Historical Drama'],
     synopsis:
       'The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb, rendered through high-contrast 65mm celluloid realism and intense moral reckoning.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1894&auto=format&fit=crop',
+    imageUrl: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
+    posterUrl: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
+    backdropUrl: 'https://image.tmdb.org/t/p/w1280/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg',
     photoCredit: 'Universal Pictures / Syncopy Inc.',
   },
   dualFrames: [
@@ -81,8 +86,9 @@ export const TRENDING_REPERTOIRE: {
       genres: ['Romance', 'Drama'],
       synopsis:
         'Two deeply connected childhood friends are wrested apart after Nora’s family emigrates from South Korea, only to be reunited two decades later in New York.',
-      imageUrl:
-        'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=1740&auto=format&fit=crop',
+      imageUrl: 'https://image.tmdb.org/t/p/w500/k3waqVXSnvCZWfJYNtdamTgTtTA.jpg',
+      posterUrl: 'https://image.tmdb.org/t/p/w500/k3waqVXSnvCZWfJYNtdamTgTtTA.jpg',
+      backdropUrl: 'https://image.tmdb.org/t/p/w1280/nnUQql9L8fI3b0N4v1pvdUvR71Q.jpg',
       photoCredit: 'A24 / CJ ENM',
     },
     {
@@ -98,8 +104,9 @@ export const TRENDING_REPERTOIRE: {
       genres: ['Crime', 'Mystery', 'Drama'],
       synopsis:
         'A woman is suspected of her husband’s murder, and their blind son faces a moral dilemma as the main witness in an icy courtroom in the French Alps.',
-      imageUrl:
-        'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1718&auto=format&fit=crop',
+      imageUrl: 'https://image.tmdb.org/t/p/w500/lDVl2jf6VB8ODl1olZ6FLvOV1gX.jpg',
+      posterUrl: 'https://image.tmdb.org/t/p/w500/lDVl2jf6VB8ODl1olZ6FLvOV1gX.jpg',
+      backdropUrl: 'https://image.tmdb.org/t/p/w1280/lDVl2jf6VB8ODl1olZ6FLvOV1gX.jpg',
       photoCredit: 'Le Pacte / Neon',
     },
   ],
@@ -113,8 +120,9 @@ export const TRENDING_REPERTOIRE: {
       tmdbVotes: '6,300',
       genres: ['Fantasy', 'Comedy', 'Sci-Fi'],
       synopsis: 'The incredible tale of Bella Baxter, a young woman brought back to life by an unorthodox scientist.',
-      imageUrl:
-        'https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=1548&auto=format&fit=crop',
+      imageUrl: 'https://image.tmdb.org/t/p/w500/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg',
+      posterUrl: 'https://image.tmdb.org/t/p/w500/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg',
+      backdropUrl: 'https://image.tmdb.org/t/p/w1280/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg',
     },
     {
       id: 'the-zone-of-interest',
@@ -125,8 +133,9 @@ export const TRENDING_REPERTOIRE: {
       tmdbVotes: '2,900',
       genres: ['Historical', 'Drama'],
       synopsis: 'Auschwitz commandant Rudolf Höss and his wife strive to build a dream life next to the camp.',
-      imageUrl:
-        'https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=1740&auto=format&fit=crop',
+      imageUrl: 'https://image.tmdb.org/t/p/w500/hUu9zyZmDd8VZegKi1iK1Vk0RYS.jpg',
+      posterUrl: 'https://image.tmdb.org/t/p/w500/hUu9zyZmDd8VZegKi1iK1Vk0RYS.jpg',
+      backdropUrl: 'https://image.tmdb.org/t/p/w1280/hUu9zyZmDd8VZegKi1iK1Vk0RYS.jpg',
     },
     {
       id: 'killers-of-the-flower-moon',
@@ -137,8 +146,9 @@ export const TRENDING_REPERTOIRE: {
       tmdbVotes: '4,800',
       genres: ['Crime', 'Western', 'Drama'],
       synopsis: 'Real-love crosses paths with unspeakable betrayal in 1920s Oklahoma oil-boom Osage Nation.',
-      imageUrl:
-        'https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?q=80&w=1728&auto=format&fit=crop',
+      imageUrl: 'https://image.tmdb.org/t/p/w500/dB6Krk806zeqd0YNp2ngQ9zXteH.jpg',
+      posterUrl: 'https://image.tmdb.org/t/p/w500/dB6Krk806zeqd0YNp2ngQ9zXteH.jpg',
+      backdropUrl: 'https://image.tmdb.org/t/p/w1280/dB6Krk806zeqd0YNp2ngQ9zXteH.jpg',
     },
   ],
 };
@@ -158,8 +168,8 @@ export const RELEASE_RADAR_MOCK: {
       region: 'IN (India Theatrical)',
       certification: 'A',
       daysRemaining: 0,
-      imageUrl:
-        'https://images.unsplash.com/photo-1533928298208-27ff66555d8d?q=80&w=1740&auto=format&fit=crop',
+      imageUrl: 'https://image.tmdb.org/t/p/w500/2cxhvwyEwRlysAmRH4iodkvo0z5.jpg',
+      posterUrl: 'https://image.tmdb.org/t/p/w500/2cxhvwyEwRlysAmRH4iodkvo0z5.jpg',
     },
     {
       id: 'wicked',
@@ -170,32 +180,32 @@ export const RELEASE_RADAR_MOCK: {
       region: 'IN (India Theatrical)',
       certification: 'UA',
       daysRemaining: 1,
-      imageUrl:
-        'https://images.unsplash.com/photo-1514306191717-452ec28c7814?q=80&w=1738&auto=format&fit=crop',
+      imageUrl: 'https://image.tmdb.org/t/p/w500/xDGbZ0JJ3mYaGKy4Nzd9Kph6M9L.jpg',
+      posterUrl: 'https://image.tmdb.org/t/p/w500/xDGbZ0JJ3mYaGKy4Nzd9Kph6M9L.jpg',
     },
   ],
   inTheatersNow: [
     {
-      id: 'kalki-2898-ad',
-      title: 'Kalki 2898 AD',
-      director: 'Nag Ashwin',
-      releaseDate: 'June 27, 2024',
+      id: 'dune-part-two',
+      title: 'Dune: Part Two',
+      director: 'Denis Villeneuve',
+      releaseDate: 'March 1, 2024',
       releaseType: 'Theatrical',
       region: 'IN (India Theatrical)',
       certification: 'UA',
-      imageUrl:
-        'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1744&auto=format&fit=crop',
+      imageUrl: 'https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg',
+      posterUrl: 'https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg',
     },
     {
-      id: 'stree-2',
-      title: 'Stree 2',
-      director: 'Amar Kaushik',
-      releaseDate: 'August 15, 2024',
+      id: 'oppenheimer',
+      title: 'Oppenheimer',
+      director: 'Christopher Nolan',
+      releaseDate: 'July 21, 2023',
       releaseType: 'Theatrical',
       region: 'IN (India Theatrical)',
-      certification: 'UA',
-      imageUrl:
-        'https://images.unsplash.com/photo-1509281373149-e957c6296406?q=80&w=1628&auto=format&fit=crop',
+      certification: 'A',
+      imageUrl: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
+      posterUrl: 'https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
     },
   ],
   comingSoon: [
@@ -206,8 +216,8 @@ export const RELEASE_RADAR_MOCK: {
       releaseDate: 'December 25, 2024',
       releaseType: 'Theatrical',
       region: 'International Debut',
-      imageUrl:
-        'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?q=80&w=1740&auto=format&fit=crop',
+      imageUrl: 'https://image.tmdb.org/t/p/w500/d0B8xDdqBZlzlPEzES8lu5LlNQn.jpg',
+      posterUrl: 'https://image.tmdb.org/t/p/w500/d0B8xDdqBZlzlPEzES8lu5LlNQn.jpg',
     },
     {
       id: 'mickey-17',
@@ -216,8 +226,8 @@ export const RELEASE_RADAR_MOCK: {
       releaseDate: 'April 18, 2025',
       releaseType: 'Theatrical',
       region: 'Global Theatrical',
-      imageUrl:
-        'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=1744&auto=format&fit=crop',
+      imageUrl: 'https://image.tmdb.org/t/p/w500/edKpE9B5qN3e559OuMCLZdW1iBZ.jpg',
+      posterUrl: 'https://image.tmdb.org/t/p/w500/edKpE9B5qN3e559OuMCLZdW1iBZ.jpg',
     },
   ],
 };
@@ -227,8 +237,7 @@ export const CURATOR_RETROSPECTIVE = {
   period: '1990 — 2004 Hong Kong Retrospective',
   essay:
     'Characterized by saturated step-printing, elliptical editing, and the lush cinematography of Christopher Doyle and Mark Lee Ping-bing, Wong Kar-wai’s cinema explores memory, yearning, and the temporal ache of urban displacement.',
-  imageUrl:
-    'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1884&auto=format&fit=crop',
+  imageUrl: 'https://image.tmdb.org/t/p/w1280/etjA69oh0nil3HnvWoSV0vY7iqe.jpg',
   films: [
     { title: 'Chungking Express', year: 1994, runtime: '102 MIN', score: '8.0' },
     { title: 'In the Mood for Love', year: 2000, runtime: '98 MIN', score: '8.2' },
